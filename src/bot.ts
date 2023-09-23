@@ -21,19 +21,32 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
   const replyToken = event.replyToken
   const userMessage = event.message.text
 
-  const replyMessage: TextMessage = userMessage.includes('こんにちは')
-    ? {
-        type: 'text',
-        text: 'こんにちは！',
-      }
-    : {
-        type: 'text',
-        text: 'メッセージを受け取りました: ' + userMessage,
-      }
-
   try {
+    const url =
+      'https://5ahnobd5pjhzbebk7mqsin5j5a0twdfz.lambda-url.ap-northeast-1.on.aws/'
+
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        userMessage,
+      }),
+    })
+
+    const { recipe } = await response.json()
+
+    const replyMessage: TextMessage = {
+      type: 'text',
+      text: recipe,
+    }
+
     await client.replyMessage(replyToken, replyMessage)
   } catch (error) {
+    const replyMessage: TextMessage = {
+      type: 'text',
+      text: '開発中です。',
+    }
+
+    await client.replyMessage(replyToken, replyMessage)
     console.error('Error responding to message:', error)
   }
 }
