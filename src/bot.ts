@@ -44,6 +44,7 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
       }
 
       await client.pushMessage(userId, replyMessage)
+      return
     }
 
     const replyImage: ImageMessage = {
