@@ -1,14 +1,33 @@
-# Welcome to your CDK TypeScript project
+# CHATGPT COOKING ASSISTANT LINE BOT
 
-This is a blank project for CDK development with TypeScript.
+<div><img src="./docs/main.png" /></div>
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+<div align="center">
+  This Line Bot is a unique recipe website where the AI generates recipes based on ingredients you want to use and those you don't want to use.
+</div>
 
-## Useful commands
+- [CHATGPT COOKING ASSISTANT LINE BOT](#chatgpt-cooking-assistant-line-bot)
+- [Installation](#installation)
+- [Usage](#usage)
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+# Installation
+
+```bash
+$ git clone https://github.com/maaaashi/chatgpt-cooking-assistant
+$ cd chatgpt-cooking-assistant
+```
+
+# Usage
+
+```bash
+$ make dev
+```
+
+Access to http://localhost:3000
+
+<!-- # Test
+
+```bash
+# Run test
+$ npm run test:watch
+``` -->
