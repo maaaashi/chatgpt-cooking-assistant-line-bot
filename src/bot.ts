@@ -4,6 +4,7 @@ import {
   WebhookEvent,
   MessageEvent,
   ClientConfig,
+  ImageMessage,
 } from '@line/bot-sdk'
 
 const config: ClientConfig = {
@@ -31,16 +32,21 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
       }),
     })
 
-    const { recipe } = await response.json()
+    const { recipe, imageUrl } = await response.json()
 
-    console.log(recipe)
+    const replyImage: ImageMessage = {
+      type: 'image',
+      originalContentUrl: imageUrl,
+      previewImageUrl: imageUrl,
+    }
 
-    const replyMessage: TextMessage = {
+    const replyRecipe: TextMessage = {
       type: 'text',
       text: recipe,
     }
 
-    await client.replyMessage(replyToken, replyMessage)
+    await client.replyMessage(replyToken, replyImage)
+    await client.replyMessage(replyToken, replyRecipe)
   } catch (error) {
     console.error('Error responding to message:', error)
     const replyMessage: TextMessage = {
