@@ -1,8 +1,14 @@
-import { Client, TextMessage, WebhookEvent, MessageEvent } from '@line/bot-sdk'
+import {
+  Client,
+  TextMessage,
+  WebhookEvent,
+  MessageEvent,
+  ClientConfig,
+} from '@line/bot-sdk'
 
-const config = {
-  channelAccessToken: 'YOUR_CHANNEL_ACCESS_TOKEN',
-  channelSecret: 'YOUR_CHANNEL_SECRET',
+const config: ClientConfig = {
+  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN!,
+  channelSecret: process.env.CHANNEL_SECRET!,
 }
 
 const client = new Client(config)
