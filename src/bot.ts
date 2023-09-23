@@ -23,6 +23,8 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
   const userMessage = event.message.text
   const userId = event.source.userId
 
+  if (!userId) return
+
   try {
     const url = process.env.GENERATE_RECIPE_URL!
 
@@ -35,6 +37,15 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
 
     const { recipe, imageUrl } = await response.json()
 
+    if (recipe === 'ERROR') {
+      const replyMessage: TextMessage = {
+        type: 'text',
+        text: '情報が少なく、レシピの生成ができませんでした。',
+      }
+
+      await client.pushMessage(userId, replyMessage)
+    }
+
     const replyImage: ImageMessage = {
       type: 'image',
       originalContentUrl: imageUrl,
@@ -46,8 +57,8 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
       text: recipe,
     }
 
-    await client.pushMessage(userId!, replyImage)
-    await client.pushMessage(userId!, replyRecipe)
+    await client.pushMessage(userId, replyImage)
+    await client.pushMessage(userId, replyRecipe)
   } catch (error) {
     console.error('Error responding to message:', error)
     const replyMessage: TextMessage = {
