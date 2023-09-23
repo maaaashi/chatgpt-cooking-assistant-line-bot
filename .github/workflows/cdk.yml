@@ -16,7 +16,7 @@ jobs:
       - name: Setup dependencies
         run: npm ci
       - name: Setup lambda & layer
-        run: npm ci && npx tsc src/
+        run: npm ci && npx tsc ./*.ts
         working-directory: src
       - name: CDK Deploy
         run: npm run cdk deploy
