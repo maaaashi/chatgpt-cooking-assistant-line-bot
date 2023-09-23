@@ -1,0 +1,27 @@
+{
+  "name": "chatgpt-cooking-assistant-line-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.6.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2",
+    "@types/jest": "^29.5.4",
+    "jest": "^29.6.4",
+    "ts-jest": "^29.1.1",
+    "aws-cdk": "2.96.2"
+  },
+  "dependencies": {
+    "aws-cdk": "^2.96.2",
+    "aws-cdk-lib": "2.96.2",
+    "constructs": "^10.0.0",
+    "source-map-support": "^0.5.21"
+  }
+}
