@@ -33,6 +33,8 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
 
     const { recipe } = await response.json()
 
+    console.log(recipe)
+
     const replyMessage: TextMessage = {
       type: 'text',
       text: recipe,
@@ -40,13 +42,13 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
 
     await client.replyMessage(replyToken, replyMessage)
   } catch (error) {
+    console.error('Error responding to message:', error)
     const replyMessage: TextMessage = {
       type: 'text',
       text: '開発中です。',
     }
 
     await client.replyMessage(replyToken, replyMessage)
-    console.error('Error responding to message:', error)
   }
 }
 
