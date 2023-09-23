@@ -21,6 +21,7 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
 
   const replyToken = event.replyToken
   const userMessage = event.message.text
+  const userId = event.source.userId
 
   try {
     const url = process.env.GENERATE_RECIPE_URL!
@@ -45,8 +46,8 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
       text: recipe,
     }
 
-    await client.replyMessage(replyToken, replyImage)
-    await client.replyMessage(replyToken, replyRecipe)
+    await client.pushMessage(userId!, replyImage)
+    await client.pushMessage(userId!, replyRecipe)
   } catch (error) {
     console.error('Error responding to message:', error)
     const replyMessage: TextMessage = {
