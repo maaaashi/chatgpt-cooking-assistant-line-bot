@@ -1,20 +1,19 @@
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
 import { handleEvent } from './bot'
-import { Handler } from 'aws-cdk-lib/aws-lambda'
+import * as awsServerlessExpress from 'aws-serverless-express'
 
-export const handler: Handler = async () => {
-  const app = express()
+const app = express()
 
-  app.post('/webhook', bodyParser.json(), (req, res) => {
-    Promise.all(req.body.events.map(handleEvent)).then((result) =>
-      res.json(result)
-    )
-  })
+app.post('/webhook', bodyParser.json(), (req, res) => {
+  Promise.all(req.body.events.map(handleEvent)).then((result) =>
+    res.json(result)
+  )
+})
 
-  const PORT = process.env.PORT || 3000
+// AWS Lambdaのハンドラとして動作するように設定
+const server = awsServerlessExpress.createServer(app)
 
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
-  })
+exports.handler = (event: any, context: any) => {
+  awsServerlessExpress.proxy(server, event, context)
 }
