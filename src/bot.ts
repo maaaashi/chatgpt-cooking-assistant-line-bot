@@ -22,8 +22,7 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
   const userMessage = event.message.text
 
   try {
-    const url =
-      'https://5ahnobd5pjhzbebk7mqsin5j5a0twdfz.lambda-url.ap-northeast-1.on.aws/'
+    const url = process.env.GENERATE_RECIPE_URL!
 
     const response = await fetch(url, {
       method: 'POST',

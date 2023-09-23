@@ -12,9 +12,11 @@ export class AwsStack extends cdk.Stack {
       runtime: Runtime.NODEJS_18_X,
       code: Code.fromAsset('src'),
       handler: 'server.handler',
+      timeout: cdk.Duration.minutes(15),
       environment: {
         CHANNEL_ACCESS_TOKEN: process.env.CHANNEL_ACCESS_TOKEN!,
         CHANNEL_SECRET: process.env.CHANNEL_SECRET!,
+        GENERATE_RECIPE_URL: process.env.GENERATE_RECIPE_URL!,
       },
     })
 

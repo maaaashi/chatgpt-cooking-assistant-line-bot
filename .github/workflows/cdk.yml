@@ -26,3 +26,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           CHANNEL_ACCESS_TOKEN: ${{ secrets.CHANNEL_ACCESS_TOKEN }}
           CHANNEL_SECRET: ${{ secrets.CHANNEL_SECRET }}
+          GENERATE_RECIPE_URL: ${{ secrets.GENERATE_RECIPE_URL }}
