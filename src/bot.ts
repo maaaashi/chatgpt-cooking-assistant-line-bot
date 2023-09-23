@@ -27,7 +27,7 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
-        userMessage,
+        message: userMessage,
       }),
     })
 
