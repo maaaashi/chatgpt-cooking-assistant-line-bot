@@ -26,8 +26,13 @@ const handleTextMessage = async (event: MessageEvent): Promise<void> => {
   if (!userId) return
 
   try {
-    const url = process.env.GENERATE_RECIPE_URL!
+    const waitingMessage: TextMessage = {
+      type: 'text',
+      text: 'レシピを生成します。少々お待ちください。',
+    }
+    await client.pushMessage(userId, waitingMessage)
 
+    const url = process.env.GENERATE_RECIPE_URL!
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
